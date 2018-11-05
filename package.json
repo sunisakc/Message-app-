@@ -1,0 +1,24 @@
+{
+  "name": "message-app-",
+  "version": "1.0.0",
+  "description": "a litle message app build with MangoDB and socket.io",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunisakc/Message-app-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunisakc/Message-app-/issues"
+  },
+  "homepage": "https://github.com/sunisakc/Message-app-#readme"
+}
