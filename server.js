@@ -8,24 +8,46 @@ var mongoose = require('mongoose')
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+mongoose.Promise = Promise
 
 var dbUrl = 'mongodb://user:admin1@ds151453.mlab.com:51453/learnnode'
 
 
-var messages = [
-    { name: 'Tim', message: 'Hi' },
-    { name: 'Jane', message: 'Hello' }
-]
+var Message = mongoose.model('Message', {
+    name: String,
+    message: String
+})
 
 app.get('/messages', (req, res) => {
-    res.send(messages)
+    Message.find({}, (err, messages) => {
+        res.send(messages)
+    })
 })
 
-app.post('/messages', (req, res) => {
-    messages.push(req.body)
-    io.emit('message', req.body)
+app.post('/messages', async (req, res) => {
+    var message = new Message(req.body)
+
+    var savedMessage = await message.save()
+
+    console.log('saved')
+
+    var censored = await Message.findOne({ message: 'badword' })
+
+    if (censored) 
+        await Message.remove({ _id: censored.id })
+    else
+        io.emit('message', req.body)
+
     res.sendStatus(200)
+
+        // .catch((err) => {
+        //     res.sendStatus(500)
+        //     return console.error(err)
+        // })
+
 })
+
+
 
 io.on('connection', (socket) => {
     console.log('a user connected')
