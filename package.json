@@ -5,13 +5,17 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.4",
+    "jasmine-node": "^1.16.2",
     "lodash": "^4.17.11",
     "mongoose": "^5.3.9",
+    "request": "^2.88.0",
     "socket.io": "^2.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine": "^3.3.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
